@@ -12,7 +12,7 @@ RUN yum update -y &&\
 RUN yum install -y wget
     
 # install oracle jdk 8 - from http://lintut.com/how-to-install-java-8-on-rhel-centos-7-x-and-fedora-linux/
-RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u91-linux-x64.rpm" &&\
+RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u91-b14/jdk-8u91-linux-x64.rpm" &&\
     rpm -ivh jdk-8u91-linux-x64.rpm &&\
     yum remove -y java-1.7.0* &&\
     java -version
