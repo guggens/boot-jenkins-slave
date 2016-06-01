@@ -16,7 +16,7 @@ RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2
     rpm -ivh jdk-8u91-linux-x64.rpm &&\
     yum remove -y java-1.7.0* &&\
     java -version &&\
-    export JAVA_HOME=/usr/java/latest
+    export JAVA_HOME=/etc/alternatives/jre_1.8.0
   
 # install git
 RUN yum install -y git
@@ -24,14 +24,13 @@ RUN yum install -y git
 # install maven
 RUN wget http://mirror.synyx.de/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz &&\
     tar xzvf apache-maven-3.2.5-bin.tar.gz &&\
-    export PATH=./apache-maven-3.2.5/bin:$PATH
+    export PATH=./apache-maven-3.2.5/bin:$PATH &&\
+    mvn -version
     
 # cleanup yum cache.
 RUN yum clean all -y
 
-RUN export JAVA_HOME=/etc/alternatives/jre_1.8.0 &&\ 
-    env &&\
-    mvn -version
+RUN pwd 
 
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key &&\
     ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key &&\
