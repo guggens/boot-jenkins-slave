@@ -21,11 +21,10 @@ RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2
 RUN yum install -y git
 
 # install maven
-RUN cd /opt &&\ 
-    wget http://mirror.synyx.de/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz &&\
+RUN wget http://mirror.synyx.de/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz &&\
     pwd &&\
     tar xzvf apache-maven-3.2.5-bin.tar.gz &&\
-    export PATH=/opt/apache-maven-3.3.9/bin:$PATH &&\
+    export PATH=./apache-maven-3.3.9/bin:$PATH &&\
     mvn -version
     
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key &&\
