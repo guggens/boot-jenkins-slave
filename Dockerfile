@@ -23,9 +23,11 @@ RUN yum install -y git
 
 # install maven
 RUN wget http://mirror.synyx.de/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz &&\
-    pwd &&\
     tar xzvf apache-maven-3.2.5-bin.tar.gz &&\
-    export PATH=./apache-maven-3.2.5/bin:$PATH &&\
+    export PATH=./apache-maven-3.2.5/bin:$PATH
+    
+RUN which java &&\
+    env &&\
     mvn -version
 
 # cleanup yum cache.
