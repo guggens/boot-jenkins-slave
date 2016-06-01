@@ -15,7 +15,8 @@ RUN yum install -y wget
 RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u91-b14/jdk-8u91-linux-x64.rpm" &&\
     rpm -ivh jdk-8u91-linux-x64.rpm &&\
     yum remove -y java-1.7.0* &&\
-    java -version
+    java -version &&\
+    export JAVA_HOME=/usr/java/latest
   
 # install git
 RUN yum install -y git
@@ -26,6 +27,9 @@ RUN wget http://mirror.synyx.de/apache/maven/maven-3/3.2.5/binaries/apache-maven
     tar xzvf apache-maven-3.2.5-bin.tar.gz &&\
     export PATH=./apache-maven-3.2.5/bin:$PATH &&\
     mvn -version
+
+# cleanup yum cache.
+RUN yum clean all -y
     
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key &&\
     ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key &&\
