@@ -30,7 +30,8 @@ RUN JAVA_HOME=/etc/alternatives/jre_1.8.0 &&\
     echo "export JAVA_HOME=${JAVA_HOME}" > /etc/profile.d/java.sh &&\
     echo "export PATH=${MVNPATH}" >> /etc/profile.d/java.sh
     
-RUN mvn -version
+RUN source /etc/profile.d/java.sh &&\
+    mvn -version
     
 # cleanup yum cache.
 RUN yum clean all -y
