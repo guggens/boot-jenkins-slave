@@ -26,7 +26,7 @@ RUN wget http://mirror.synyx.de/apache/maven/maven-3/3.2.5/binaries/apache-maven
     tar xzvf apache-maven-3.2.5-bin.tar.gz &&\
     export PATH=./apache-maven-3.2.5/bin:$PATH
     
-RUN which java &&\
+RUN export JAVA_HOME=/etc/alternatives/jre_1.8.0 &&\ 
     env &&\
     mvn -version
 
