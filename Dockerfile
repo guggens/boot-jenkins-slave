@@ -25,7 +25,7 @@ RUN yum install -y git
 RUN wget http://mirror.synyx.de/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz &&\
     tar xzvf apache-maven-3.2.5-bin.tar.gz 
 
-RUN JAVA_HOME=/etc/alternatives/jre_1.8.0 &&\
+RUN JAVA_HOME=/usr/java/jre_1.8.0_91 &&\
     MVNPATH=./apache-maven-3.2.5/bin:$PATH &&\
     echo "export JAVA_HOME=${JAVA_HOME}" > /etc/profile.d/java.sh &&\
     echo "export PATH=${MVNPATH}" >> /etc/profile.d/java.sh
