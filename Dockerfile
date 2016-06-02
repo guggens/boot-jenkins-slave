@@ -29,7 +29,7 @@ RUN JAVA_HOME=/usr/java/latest &&\
     echo "export JAVA_HOME=${JAVA_HOME}" >> /etc/profile &&\
     echo "export PATH=${MVNPATH}" >> /etc/profile
     
-RUN mvn -version
+#RUN mvn -version
 
 # cleanup yum cache.
 RUN yum clean all -y
