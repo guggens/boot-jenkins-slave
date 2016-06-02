@@ -25,14 +25,13 @@ RUN yum install -y git
 RUN wget http://mirror.synyx.de/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz &&\
     tar xzvf apache-maven-3.2.5-bin.tar.gz 
 
-RUN JAVA_HOME=/usr/java/jre_1.8.0_91 &&\
+RUN JAVA_HOME=/usr/java/latest &&\
     MVNPATH=./apache-maven-3.2.5/bin:$PATH &&\
     echo "export JAVA_HOME=${JAVA_HOME}" > /etc/profile.d/java.sh &&\
     echo "export PATH=${MVNPATH}" >> /etc/profile.d/java.sh
     
-RUN source /etc/profile.d/java.sh
-#&&\
-#    mvn -version
+RUN source /etc/profile.d/java.sh &&\
+    mvn -version
     
 # cleanup yum cache.
 RUN yum clean all -y
