@@ -26,14 +26,11 @@ RUN wget http://mirror.synyx.de/apache/maven/maven-3/3.2.5/binaries/apache-maven
 
 RUN JAVA_HOME=/usr/java/latest &&\
     MVNPATH="/apache-maven-3.2.5/bin:$PATH" &&\
-    echo "export JAVA_HOME=${JAVA_HOME}" > /etc/profile.d/java.sh &&\
-    echo "export PATH=${MVNPATH}" >> /etc/profile.d/java.sh
+    echo "export JAVA_HOME=${JAVA_HOME}" >> /etc/profile &&\
+    echo "export PATH=${MVNPATH}" >> /etc/profile
     
-RUN source /etc/profile.d/java.sh &&\
-    mvn -version
-    
-RUN cp /etc/profile.d/java.sh /etc/profile    
-    
+RUN mvn -version
+
 # cleanup yum cache.
 RUN yum clean all -y
 
