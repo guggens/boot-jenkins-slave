@@ -32,6 +32,8 @@ RUN JAVA_HOME=/usr/java/latest &&\
 RUN source /etc/profile.d/java.sh &&\
     mvn -version
     
+RUN cp /etc/profile.d/java.sh /etc/profile    
+    
 # cleanup yum cache.
 RUN yum clean all -y
 
