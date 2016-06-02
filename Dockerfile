@@ -20,6 +20,9 @@ RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2
 # install git
 RUN yum install -y git
 
+# install rpmbuild
+RUN yum install -y rpm-build
+
 # install maven
 RUN wget http://mirror.synyx.de/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz &&\
     tar xzvf apache-maven-3.2.5-bin.tar.gz 
@@ -30,10 +33,6 @@ RUN JAVA_HOME=/usr/java/latest &&\
     echo "export JAVA_HOME=${JAVA_HOME}" >> /usr/local/bin/mvn &&\
     echo "/apache-maven-3.2.5/bin/mvn \"\$@\" " >> /usr/local/bin/mvn &&\
     chmod ugo+rwx /usr/local/bin/mvn
-    
-RUN cat /usr/local/bin/mvn
-    
-RUN mvn -version
 
 # cleanup yum cache.
 RUN yum clean all -y
