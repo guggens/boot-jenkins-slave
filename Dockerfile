@@ -29,7 +29,9 @@ RUN JAVA_HOME=/usr/java/latest &&\
     echo "export JAVA_HOME=${JAVA_HOME}" > /etc/profile.d/java.sh &&\
     echo "export PATH=${MVNPATH}" >> /etc/profile.d/java.sh
     
-#RUN mvn -version
+RUN ln -s /apache-maven-3.2.5/bin/mvn /usr/local/bin/mvn
+    
+RUN mvn -version
 
 # cleanup yum cache.
 RUN yum clean all -y
