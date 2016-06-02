@@ -48,4 +48,4 @@ RUN useradd -m -d /home/jenkins -s /bin/sh jenkins &&\
 EXPOSE 22
 
 # Default command
-CMD ["/usr/sbin/sshd", "-D"]
+CMD source /etc/profile.d/java.sh && ["/usr/sbin/sshd", "-D"]
