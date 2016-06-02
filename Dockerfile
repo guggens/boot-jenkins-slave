@@ -26,10 +26,12 @@ RUN wget http://mirror.synyx.de/apache/maven/maven-3/3.2.5/binaries/apache-maven
 
 RUN JAVA_HOME=/usr/java/latest &&\
     MVNPATH="/apache-maven-3.2.5/bin:$PATH" &&\
-    echo "export JAVA_HOME=${JAVA_HOME}" > /etc/profile.d/java.sh &&\
-    echo "export PATH=${MVNPATH}" >> /etc/profile.d/java.sh
+    echo "#! /bin/bash" > /usr/local/bin/mvn.sh &&\
+    echo "export JAVA_HOME=${JAVA_HOME}" >> /usr/local/bin/mvn.sh &&\
+    echo "/apache-maven-3.2.5/bin/mvn "$@" " >> /usr/local/bin/mvn.sh &&\
+    chmod ugo+rwx /usr/local/bin/mvn.sh
     
-RUN ln -s /apache-maven-3.2.5/bin/mvn /usr/local/bin/mvn
+#RUN ln -s /apache-maven-3.2.5/bin/mvn /usr/local/bin/mvn
     
 RUN mvn -version
 
