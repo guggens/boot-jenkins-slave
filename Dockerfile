@@ -26,8 +26,8 @@ RUN wget http://mirror.synyx.de/apache/maven/maven-3/3.2.5/binaries/apache-maven
 
 RUN JAVA_HOME=/usr/java/latest &&\
     MVNPATH="/apache-maven-3.2.5/bin:$PATH" &&\
-    echo "export JAVA_HOME=${JAVA_HOME}" >> /etc/profile &&\
-    echo "export PATH=${MVNPATH}" >> /etc/profile
+    echo "export JAVA_HOME=${JAVA_HOME}" > /etc/profile.d/java.sh &&\
+    echo "export PATH=${MVNPATH}" >> /etc/profile.d/java.sh
     
 #RUN mvn -version
 
@@ -46,4 +46,4 @@ RUN useradd -m -d /home/jenkins -s /bin/sh jenkins &&\
 EXPOSE 22
 
 # Default command
-CMD source /etc/profile.d/java.sh && ["/usr/sbin/sshd", "-D"]
+# CMD source /etc/profile.d/java.sh && ["/usr/sbin/sshd", "-D"]
